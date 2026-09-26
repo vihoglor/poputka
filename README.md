@@ -1,4 +1,4 @@
-<img width="1382" height="257" alt="image" src="https://github.com/user-attachments/assets/7043a4d0-73d2-40b4-b482-b1c9daf3a88c" /># Отчет по Лабораторной работе № 1
+# Отчет по Лабораторной работе № 1
 
 **Проект:** Веб-приложение для поиска попутчиков.
 
@@ -20,4 +20,5 @@
 
 *   **Подвал (Footer):** Содержит многоколоночную структуру с маршрутами и контактами.
 
-![Uploading image.png…]()
+<img width="1340" height="227" alt="image" src="https://github.com/user-attachments/assets/2a40f414-3f7b-44bd-b52a-568370f4bc9e" />
+
