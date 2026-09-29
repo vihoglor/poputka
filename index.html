@@ -1,3 +1,136 @@
-<html>  
-йоу
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    <title>Главная</title>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="wrap dfr aic jcsb">
+                <h1 class="title header-title">БЛАБЛАКАР</h1>
+                <nav class="nav-menu">
+                    <ul>
+                        <li><a href="">поиск</a></li>
+                        <li><a href="">предложить поездку</a></li>
+                        <li><a href="">личный кабинет</a></li>           
+                    </ul>
+                </nav>
+            </div>
+        </div>
+        
+    </header>
+    <main>
+        <section class="hero">
+            <div class="container">
+                <div class="hero-block">
+                    <h2 class="title hero-title">
+                        Надежные поездки с попутчиками по низким ценам. Находите водителей и делите расходы на путешествия в один клик
+                    </h2>
+                    <img src="./img/hero.jpg" alt="" class="hero-img">
+                </div>
+                <form class="search-form">
+                    <div class="search-group">
+                        <label for="from">Откуда</label>
+                        <input type="text" id="from" placeholder="Город отправления" required>
+                    </div>
+                    <div class="search-group">
+                        <label for="to">Куда</label>
+                        <input type="text" id="to" placeholder="Город прибытия" required>
+                    </div>
+
+                    <div class="search-group">
+                        <label for="date">Когда</label>
+                        <input type="date" id="date" required>
+                    </div>
+                    <div class="search-group">
+                        <label for="passengers">Пассажиры</label>
+                        <input type="number" id="passengers" min="1" max="8" value="1" required>
+                    </div>
+
+                    <button type="submit" class="search-btn">Найти</button>
+                </form>
+                
+            </div>
+        </section>
+
+        <section class="popular-routes">
+            <div class="container">
+                <h2 class="title popular-routes-title">
+                    Популярные маршруты
+                </h2>
+                <div class="routes">
+                    <div class="wrap dfr jcsb">
+                        <div class="route">
+                            <a href="" class="route-link">Уфа → Верхнеяркеево</a>
+                        </div>
+                        <div class="route">
+                            <a href="" class="route-link">Уфа → Златоуст</a>
+                        </div>
+                        <div class="route">
+                            <a href="" class="route-link">Уфа → Анапа</a>
+                        </div>
+                        <div class="route">
+                            <a href="" class="route-link">Уфа → КАШКАДАН</a>
+                        </div>
+                    </div>
+                    
+                    <div class="wrap dfr jcsb">
+                        <div class="route">
+                            <a href="" class="route-link">Уфа → Верхнеяркеево</a>
+                        </div>
+                        <div class="route">
+                            <a href="" class="route-link">Уфа → Златоуст</a>
+                        </div>
+                        <div class="route">
+                            <a href="" class="route-link">Уфа → Анапа</a>
+                        </div>
+                        <div class="route">
+                            <a href="" class="route-link">Уфа → КАШКАДАН</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="wrap">
+                <div class="footer-block">
+                    <h3>Популярные маршруты</h3>
+                    <ul>
+                        <li><a href="" class="footer-link">Уфа → Верхнеяркеево</a></li>
+                        <li><a href="" class="footer-link">Уфа → Златоуст</a></li>
+                        <li><a href="" class="footer-link">Уфа → Анапа</a></li>
+                        <li><a href="" class="footer-link">Уфа → КАШКАДАН</a></li>
+                    </ul>
+                </div>
+                <div class="footer-block">
+                    <h3>популярные направления</h3>
+                    <ul>
+                        <li><a href="" class="footer-link">Уфа → Верхнеяркеево</a></li>
+                        <li><a href="" class="footer-link">Уфа → Златоуст</a></li>
+                        <li><a href="" class="footer-link">Уфа → Анапа</a></li>
+                        <li><a href="" class="footer-link">Уфа → КАШКАДАН</a></li>
+                    </ul>
+                </div>
+                <div class="footer-block">
+                    <h3>Контакты</h3>
+                    <ul>
+                        <li><a href="" class="footer-link">Уфа → Верхнеяркеево</a></li>
+                        <li><a href="" class="footer-link">Уфа → Златоуст</a></li>
+                        <li><a href="" class="footer-link">Уфа → Анапа</a></li>
+                        <li><a href="" class="footer-link">Уфа → КАШКАДАН</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>    
+    </footer>
+</body>
 </html>
