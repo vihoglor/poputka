@@ -51,6 +51,7 @@ body{
 
 .container{
   max-width: 1140px;
+  width: 100%;
   margin: 0 auto;
   padding: 0 20px;
 }
@@ -183,31 +184,30 @@ nav a{
   font-weight: 600;
 
   cursor: pointer;
-  transition: background-color 0.2s, scale 0.2s ease-out;
+  transition: background-color 0.2s, transform .2s ease-out;
 }
 
 .btn-secondary {
-    background: transparent;
-    color: var(--primary);
-    border: 1px solid var(--primary);
-    padding: 11px;
-    border-radius: 12px;
-    font-weight: 700;
-    cursor: pointer;
-    width: 100%;
-    will-change: transform;
-    transition: background-color 0.2s, color 0.2s, scale 0.2s ease-out;
+  background: transparent;
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  padding: 11px;
+  border-radius: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  width: 100%;
+  transition: background-color 0.2s, color 0.2s, scale 0.2s ease-out;
 }
 
 .btn-secondary:hover {
-    background-color: var(--primary);
-    color: white;
-   
+  background-color: var(--primary);
+  color: white;
+  
 }
 
 .btn-primary:hover {
-    background-color: var(--primary-hover);
-    
+  background-color: var(--primary-hover);
+  transform: translateY(-2px);
 }
 
 
@@ -313,9 +313,12 @@ main{
   font-size: 16px;
   font-weight: 700;
   cursor: pointer;
-  will-change: transform;
 
   margin-left: 10px;
+}
+
+.search-btn:hover{
+  transform: unset;
 }
 
 .advantages {
@@ -331,7 +334,7 @@ main{
   align-items: center;
   gap: 8px;
   background: rgba(255, 255, 255, 0.6);
-  padding: 8px 16px;
+  padding: 8px 20px 8px 16px;
   border-radius: 30px;
   border: 1px solid var(--glass-border);
 }
@@ -352,7 +355,7 @@ main{
 
 .rides-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  grid-template-columns: repeat(4, 1fr);
   gap: 24px;
 }
 
@@ -380,7 +383,7 @@ main{
 }
 
 .ride-price {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 800;
   color: #0f172a;
 }
@@ -521,38 +524,60 @@ main{
   color: var(--primary);
 }
 
-@media (min-width: 576px) {
-    .container {
-      max-width: 540px;
-    }
+@media (min-width: 1600px) {
+  .container {
+    max-width: 1400px;
   }
-  
-  @media (min-width: 768px) {
-    .container {
-      max-width: 720px;
-    }
+}
+
+@media (max-width: 992px) {
+  .container {
+    max-width: 960px;
   }
-  
-  @media (min-width: 992px) {
-    .container {
-      max-width: 960px;
-    }
+  .search-form {
+    width: 800px;
   }
-  
-  @media (min-width: 1200px) {
-    .container {
-      max-width: 1140px;
-    }
+
+  .rides-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0;
+    row-gap: 20px ;
+    justify-content: start; 
+    max-width: 600px;
+    width: 100%;
+    margin: 0 auto;
   }
-  
-  @media (min-width: 1400px) {
-    .container {
-      max-width: 1320px;
-    }
+
+  .ride-card {
+    padding: 12px;
+    max-width: 280px;
+    width: 100%;
+    justify-self: center;
   }
-  
-  @media (min-width: 2560px) {
-    .container {
-      max-width: 1800px;
-    }
+
+  .btn-rides{
+    width: 60%;
+    display: block;
+    margin: 0 auto;
   }
+}
+
+@media (max-width: 768px) {
+  .container {
+    max-width: 720px;
+  }
+}
+
+@media (max-width: 576px) {
+  .container {
+    max-width: 540px; 
+    padding: 0 16px;
+  }
+  .section-title {
+    font-size: 32px;
+  }
+  .rides-grid {
+    grid-template-columns: 1fr;
+  }
+}
