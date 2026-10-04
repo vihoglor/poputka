@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 170">
+<defs>
+  <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0" stop-color="#0077ff"/>
+    <stop offset="1" stop-color="#38ef7d"/>
+  </linearGradient>
+</defs>
+<path d="M28 135 C105 135 104 32 184 32 S270 135 344 135" fill="none" stroke="#0077ff" stroke-width="6" stroke-linecap="round" stroke-dasharray="11 10" opacity=".35"/>
+<path d="M64 105 L86 105 L101 72 Q105 64 116 64 H194 Q204 64 209 72 L224 105 H247 Q258 105 258 116 V122 H52 V116 Q52 105 64 105Z" fill="url(#g)"/>
+<circle cx="83" cy="121" r="13" fill="#0f172a"/>
+<circle cx="227" cy="121" r="13" fill="#0f172a"/>
+<circle cx="83" cy="121" r="5" fill="#fff"/>
+<circle cx="227" cy="121" r="5" fill="#fff"/>
+<text x="286" y="111" font-family="Roboto, sans-serif" font-size="57" font-weight="800" fill="#0f172a">Попутка</text>
+</svg>

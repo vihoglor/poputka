@@ -7,18 +7,26 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    <title>Главная</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+    <title>Попутка</title>
 </head>
 <body>
+    <div class="glass-bg-sphere sphere-1"></div>
+    <div class="glass-bg-sphere sphere-2"></div>
+    <div class="glass-bg-sphere sphere-3"></div>
     <header>
         <div class="container">
-            <div class="wrap dfr aic jcsb">
-                <h1 class="title header-title">БЛАБЛАКАР</h1>
+            <div class="menu">
+                <a href="" class="logo">
+                    <img src="./img/04_p_icon.svg" alt="Попутка">
+                  
+                    <!-- <h1 class="title header-title">Попутка</h1> -->
+                </a>
                 <nav class="nav-menu">
-                    <ul>
-                        <li><a href="">поиск</a></li>
-                        <li><a href="">предложить поездку</a></li>
-                        <li><a href="">личный кабинет</a></li>           
+                        <a href="">Как это работает</a>
+                        <a href="">Водителям</a>
+                        <a href="">Войти</a>
+                        <button class="btn-primary">Предложить поездку</button>         
                     </ul>
                 </nav>
             </div>
@@ -30,68 +38,195 @@
             <div class="container">
                 <div class="hero-block">
                     <h2 class="title hero-title">
-                        Надежные поездки с попутчиками по низким ценам. Находите водителей и делите расходы на путешествия в один клик
+                        Дорога ближе, когда вы вместе
                     </h2>
-                    <img src="./img/hero.jpg" alt="" class="hero-img">
+                    <p class="hero-text">
+                        Находите попутчиков или свободное место в машине. Удобные поездки начинаются здесь.
+                    </p>
+                   <form class="search-form glass-element">
+                        <div class="search-group">
+                            <label for="from">Откуда</label>
+                            <input type="text" id="from" placeholder="Город отправления" required>
+                        </div>
+                        <div class="search-divider"></div>
+                        <div class="search-group">
+                            <label for="to">Куда</label>
+                            <input type="text" id="to" placeholder="Город прибытия" required>
+                        </div>
+                        <div class="search-divider"></div>
+                        <div class="search-group">
+                            <label for="date">Когда</label>
+                            <input type="date" id="date" required>
+                        </div>
+                        <div class="search-divider"></div>
+                        <div class="search-group">
+                            <label for="passengers">Пассажиры</label>
+                            <input type="number" id="passengers" min="1" max="8" value="1" required>
+                        </div>
+
+                        <button type="submit" class="btn-primary search-btn">Найти</button>
+                    </form>
+                    <div class="advantages">
+                        <div class="advantage-item"><span>✓</span> Профили с отзывами</div>
+                        <div class="advantage-item"><span>✓</span> Понятная цена</div>
+                        <div class="advantage-item"><span>✓</span> Удобный поиск</div>
+                    </div>
                 </div>
-                <form class="search-form">
-                    <div class="search-group">
-                        <label for="from">Откуда</label>
-                        <input type="text" id="from" placeholder="Город отправления" required>
-                    </div>
-                    <div class="search-group">
-                        <label for="to">Куда</label>
-                        <input type="text" id="to" placeholder="Город прибытия" required>
-                    </div>
-
-                    <div class="search-group">
-                        <label for="date">Когда</label>
-                        <input type="date" id="date" required>
-                    </div>
-                    <div class="search-group">
-                        <label for="passengers">Пассажиры</label>
-                        <input type="number" id="passengers" min="1" max="8" value="1" required>
-                    </div>
-
-                    <button type="submit" class="search-btn">Найти</button>
-                </form>
-                
+            
             </div>
         </section>
 
-        <section class="popular-routes">
+        <section class="section-rides">
             <div class="container">
-                <h2 class="title popular-routes-title">
-                    Популярные маршруты
-                </h2>
-                <div class="routes">
-                    <div class="wrap dfr jcsb">
-                        <div class="route">
-                            <a href="" class="route-link">Уфа → Верхнеяркеево</a>
+                <h2 class="section-title">Популярные маршруты</h2>
+                <p class="section-subtitle">Выберите маршрут — и найдите подходящую компанию</p>
+
+                <div class="rides-grid">
+                    <div class="ride-card glass-element">
+                        <div class="ride-card-top">
+                            <div class="ride-header">
+                                <span class="ride-price">650 ₽ <small>/ место</small></span>
+                                <span class="ride-seats">3 места</span>
+                            </div>
+                            <div class="ride-route">
+                                <div class="ride-time-block">
+                                    <span class="ride-time">09:30</span>
+                                    <span class="ride-city">Москва</span>
+                                </div>
+                                <div class="ride-time-block">
+                                    <span class="ride-time">11:40</span>
+                                    <span class="ride-city">Тула</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="route">
-                            <a href="" class="route-link">Уфа → Златоуст</a>
-                        </div>
-                        <div class="route">
-                            <a href="" class="route-link">Уфа → Анапа</a>
-                        </div>
-                        <div class="route">
-                            <a href="" class="route-link">Уфа → КАШКАДАН</a>
+                        <div class="ride-card-bottom">
+                            <div class="driver-info">
+                                <div class="driver-avatar">АС</div>
+                                <div>
+                                    <div class="driver-name">Александр</div>
+                                    <div class="driver-rating">★ 4.9 <span class="rides-count">· 38 поездок</span></div>
+                                </div>
+                            </div>
+                            <button class="btn-secondary">Забронировать</button>
                         </div>
                     </div>
-                    
-                    <div class="wrap dfr jcsb">
-                        <div class="route">
-                            <a href="" class="route-link">Уфа → Верхнеяркеево</a>
+
+                    <div class="ride-card glass-element">
+                        <div class="ride-card-top">
+                            <div class="ride-header">
+                                <span class="ride-price">540 ₽ <small>/ место</small></span>
+                                <span class="ride-seats">2 места</span>
+                            </div>
+                            <div class="ride-route">
+                                <div class="ride-time-block">
+                                    <span class="ride-time">12:15</span>
+                                    <span class="ride-city">Москва</span>
+                                </div>
+                                <div class="ride-time-block">
+                                    <span class="ride-time">14:30</span>
+                                    <span class="ride-city">Тверь</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="route">
-                            <a href="" class="route-link">Уфа → Златоуст</a>
+                        <div class="ride-card-bottom">
+                            <div class="driver-info">
+                                <div class="driver-avatar">МЛ</div>
+                                <div>
+                                    <div class="driver-name">Мария</div>
+                                    <div class="driver-rating">★ 5.0 <span class="rides-count">· 21 поездка</span></div>
+                                </div>
+                            </div>
+                            <button class="btn-secondary">Забронировать</button>
                         </div>
-                        <div class="route">
-                            <a href="" class="route-link">Уфа → Анапа</a>
+                    </div>
+
+                    <div class="ride-card glass-element">
+                        <div class="ride-card-top">
+                            <div class="ride-header">
+                                <span class="ride-price">1 100 ₽ <small>/ место</small></span>
+                                <span class="ride-seats">3 места</span>
+                            </div>
+                            <div class="ride-route">
+                                <div class="ride-time-block">
+                                    <span class="ride-time">08:00</span>
+                                    <span class="ride-city">Казань</span>
+                                </div>
+                                <div class="ride-time-block">
+                                    <span class="ride-time">12:10</span>
+                                    <span class="ride-city">Уфа</span>
+                                </div>
+                            </div>
                         </div>
-                        <div class="route">
-                            <a href="" class="route-link">Уфа → КАШКАДАН</a>
+                        <div class="ride-card-bottom">
+                            <div class="driver-info">
+                                <div class="driver-avatar">ДК</div>
+                                <div>
+                                    <div class="driver-name">Дамир</div>
+                                    <div class="driver-rating">★ 4.8 <span class="rides-count">· 16 поездок</span></div>
+                                </div>
+                            </div>
+                            <button class="btn-secondary">Забронировать</button>
+                        </div>
+                    </div>
+
+                    <div class="ride-card glass-element">
+                        <div class="ride-card-top">
+                            <div class="ride-header">
+                                <span class="ride-price">1 750 ₽ <small>/ место</small></span>
+                                <span class="ride-seats">1 место</span>
+                            </div>
+                            <div class="ride-route">
+                                <div class="ride-time-block">
+                                    <span class="ride-time">07:20</span>
+                                    <span class="ride-city">Санкт-Петербург</span>
+                                </div>
+                                <div class="ride-time-block">
+                                    <span class="ride-time">14:00</span>
+                                    <span class="ride-city">Москва</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="ride-card-bottom">
+                            <div class="driver-info">
+                                <div class="driver-avatar">ЕВ</div>
+                                <div>
+                                    <div class="driver-name">Елена</div>
+                                    <div class="driver-rating">★ 5.0 <span class="rides-count">· 52 поездки</span></div>
+                                </div>
+                            </div>
+                            <button class="btn-secondary">Забронировать</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+        </section>
+        
+        <section class="steps-section">
+            <div class="container">
+                <h2 class="section-title">Просто по пути</h2>
+                <p class="section-subtitle">Всего несколько шагов — и вы уже планируете поездку</p>
+                
+                <div class="steps-grid">
+                    <div class="step-item glass-element">
+                        <div class="step-number">01</div>
+                        <div class="step-content">
+                            <h3>Найдите маршрут</h3>
+                            <p>Укажите города и дату, чтобы увидеть подходящие поездки.</p>
+                        </div>
+                    </div>
+                    <div class="step-item glass-element">
+                        <div class="step-number">02</div>
+                        <div class="step-content">
+                            <h3>Выберите водителя</h3>
+                            <p>Сравните время, цену, свободные места и отзывы пассажиров.</p>
+                        </div>
+                    </div>
+                    <div class="step-item glass-element">
+                        <div class="step-number">03</div>
+                        <div class="step-content">
+                            <h3>Договоритесь о поездке</h3>
+                            <p>Свяжитесь с водителем и уточните детали отправления.</p>
                         </div>
                     </div>
                 </div>
@@ -99,38 +234,15 @@
         </section>
     </main>
 
-    <footer>
-        <div class="container">
-            <div class="wrap">
-                <div class="footer-block">
-                    <h3>Популярные маршруты</h3>
-                    <ul>
-                        <li><a href="" class="footer-link">Уфа → Верхнеяркеево</a></li>
-                        <li><a href="" class="footer-link">Уфа → Златоуст</a></li>
-                        <li><a href="" class="footer-link">Уфа → Анапа</a></li>
-                        <li><a href="" class="footer-link">Уфа → КАШКАДАН</a></li>
-                    </ul>
-                </div>
-                <div class="footer-block">
-                    <h3>популярные направления</h3>
-                    <ul>
-                        <li><a href="" class="footer-link">Уфа → Верхнеяркеево</a></li>
-                        <li><a href="" class="footer-link">Уфа → Златоуст</a></li>
-                        <li><a href="" class="footer-link">Уфа → Анапа</a></li>
-                        <li><a href="" class="footer-link">Уфа → КАШКАДАН</a></li>
-                    </ul>
-                </div>
-                <div class="footer-block">
-                    <h3>Контакты</h3>
-                    <ul>
-                        <li><a href="" class="footer-link">Уфа → Верхнеяркеево</a></li>
-                        <li><a href="" class="footer-link">Уфа → Златоуст</a></li>
-                        <li><a href="" class="footer-link">Уфа → Анапа</a></li>
-                        <li><a href="" class="footer-link">Уфа → КАШКАДАН</a></li>
-                    </ul>
-                </div>
+    <footer class="footer glass-element">
+        <div class="container footer-inner">
+            <div>Попутно © 2026. Демонстрационный сайт.</div>
+            <div class="footer-links">
+                <a href="#">Как это работает</a>
+                <a href="#">Водителям</a>
+                <a href="#">Поддержка</a>
             </div>
-        </div>    
+        </div>
     </footer>
 </body>
 </html>
