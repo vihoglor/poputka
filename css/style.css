@@ -383,7 +383,7 @@ main{
 }
 
 .ride-price {
-  font-size: 20px;
+  font-size: 1.2rem;
   font-weight: 800;
   color: #0f172a;
 }
@@ -530,12 +530,27 @@ main{
   }
 }
 
+@media (max-width: 1100px) {
+  .ride-price{
+    font-size: 1rem;
+  }
+
+  .rides-grid{
+    gap: 12px;
+  }
+
+}
+
 @media (max-width: 992px) {
   .container {
     max-width: 960px;
   }
   .search-form {
     width: 800px;
+  }
+
+  .ride-price {
+    font-size: 1.4rem;
   }
 
   .rides-grid {
@@ -561,11 +576,65 @@ main{
     display: block;
     margin: 0 auto;
   }
+
+  .logo {
+    width: 120px;
+  }
+
+  .nav-menu {
+    gap: 12px;
+  }
+  nav a {
+    font-size: 10px;
+  }
+
+  .btn-primary{
+    font-size: 10px;
+    padding: 6px 10px;
+  }
+
+  header {
+    background: rgba(255, 255, 255, 1);
+    backdrop-filter: unset;
+    border-bottom: unset;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .menu{
+    height: 40px;
+  }
 }
 
 @media (max-width: 768px) {
   .container {
     max-width: 720px;
+  }
+
+  .search-form{
+    width: 650px;
+  }
+  .search-group input{
+    font-size: 11px;
+  }
+  .search-divider {
+    margin: 0 12px;
+  }
+
+  .search-group label {
+    font-size: 8px;
+  }
+  .search-btn{
+    padding: 16px 36px;
+  }
+
+  .hero-title {
+    font-size: 32px;
+  }
+
+  .hero-text {
+    font-size: 12px;
   }
 }
 
@@ -578,6 +647,46 @@ main{
     font-size: 32px;
   }
   .rides-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
+
+  .search-form {
+    width: 500px;
+  }
+
+  .ride-card {
+    max-width: 200px;
+    height: unset;
+  }
+
+  .ride-price {
+    font-size: 1rem;
+  }
+  .ride-seats {
+    font-size: 8px;
+  }
+
+  .ride-time {
+    font-size: 12px;
+  }
+
+  .ride-city {
+    font-size: 12px;
+  }
+  .driver-name {
+    font-size: 12px;
+  }
+
+  .driver-rating {
+    font-size: 10px;
+  }
+
+  .rides-count {
+    font-size: 8px;
+  }
+
+  .btn-rides {
+    font-size: 10px;
+  }
+
 }
