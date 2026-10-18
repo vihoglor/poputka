@@ -132,7 +132,7 @@ function initHomePage() {
             date: ride.date,
             seats: "1"
         });
-        btn.href = `../search.html?${params.toString()}`;
+        btn.href = `../poputka/search.html?${params.toString()}`;
 
         card.append(btn);
         popularContainer.append(card);
@@ -156,7 +156,7 @@ searchForm.addEventListener("submit", (event) =>{
         from, to, date, seats: passengers
     });
 
-    window.location.href = `../search.html?${params.toString()}`;
+    window.location.href = `../poputka/search.html?${params.toString()}`;
 });
 
 
