@@ -81,6 +81,11 @@ function createElement(tag, className, text){
     return element;
 }
 
+function normalize(value){
+    return String(value).trim().toLowerCase();
+}
+ 
+// создание карточки маршрута
 function buildRideCard(ride){
     const card = createElement("div", "ride-card glass-element");
     
@@ -104,13 +109,20 @@ function buildRideCard(ride){
     const driverText = createElement("div");
     const driverName = createElement("div", "driver-name", `${ride.driver}`);
     const driverRating = createElement("div", "driver-rating", `★ ${ride.rating}`);
+
+    const btn = createElement("a", "btn-secondary btn-rides", "Забронировать");
+    btn.addEventListener("click", () => {
+        alert("забронирована");
+    })
+
     driverText.append(driverName, driverRating);
     driverInfo.append(avatar, driverText);
-    card.append(top, driverInfo);
+    card.append(top, driverInfo, btn);
     return card;
 
 }
 
+// выгрузка карточек
 function initHomePage() {
     const popularContainer = document.querySelector("#popular-rides");
     const searchForm = document.querySelector("#search-form");
@@ -125,39 +137,24 @@ function initHomePage() {
     popularContainer.replaceChildren();
     popularRides.forEach((ride) => {
         const card = buildRideCard(ride);
-        const btn = createElement("a", "btn-secondary btn-rides", "Найти поездку");
-        const params = new URLSearchParams({
-            from: ride.from,
-            to: ride.to,
-            date: ride.date,
-            seats: "1"
-        });
-        btn.href = `../poputka/search.html?${params.toString()}`;
-
-        card.append(btn);
         popularContainer.append(card);
+    });
+
+    searchForm.addEventListener("submit", (event) =>{
+        event.preventDefault();
+        const from = document.querySelector("#from").value.trim();
+        const to = document.querySelector("#to").value.trim();
+        const date = document.querySelector("#date").value;
+        const passengers = document.querySelector("#passengers").value || "1";
+        const params = new URLSearchParams({
+            from, to, date, seats: passengers
+        });
+
+        window.location.href = `../search.html?${params.toString()}`;
     });
     
 }
 
-
-
-// Поиск
-
-searchForm = document.querySelector("#search-form");
-searchForm.addEventListener("submit", (event) =>{
-    event.preventDefault();
-    const from = document.querySelector("#from").value.trim();
-    const to = document.querySelector("#to").value.trim();
-    const date = document.querySelector("#date").value;
-    const passengers = document.querySelector("#passengers").value || "1";
-
-    const params = new URLSearchParams({
-        from, to, date, seats: passengers
-    });
-
-    window.location.href = `../poputka/search.html?${params.toString()}`;
-});
 
 
 // страница search.html
@@ -174,7 +171,7 @@ function initSearchPage(){
     const searchQueryInput = document.querySelector("#search-query");
     const categoryFilter = document.querySelector("#category-filter");
     const maxPriceInput = document.querySelector("#max-price");
-    const minRatingInput = document.querySelector("#min-rating");
+    const minRatingSelect = document.querySelector("#min-rating");
     const sortSelect = document.querySelector("#sort-by");
     const resetButton = document.querySelector("#reset-filters");
     const resultsCount = document.querySelector("#results-count");
@@ -202,8 +199,127 @@ function initSearchPage(){
     toInput.value = state.route.to;
     dateInput.value = state.route.date;
     passengersInput.value = String(state.route.passangers);
-    console.log(fromInput);
+    
+    function getVisibleRides() {
+        const filtered = state.items.filter((ride) => {
+            const routeFromMatches = !state.route.from || normalize(ride.from) === normalize(state.route.from);
+            const routeToMatches = !state.route.to || normalize(ride.to) === normalize(state.route.to);
+            const dateMatches = !state.route.date || ride.date === state.route.date;
+            const passengersMatch = ride.seats >= state.route.passangers;
+            const text = normalize(`${ride.driver} ${ride.from} ${ride.to}`);
+            const searchMatches = !state.searchQuery || text.includes(normalize(state.searchQuery));
+            const priceMatches = state.maxPrice === null || ride.price <= state.maxPrice;
+            const ratingMatches = ride.rating >= state.minRating;
+
+            return routeFromMatches && routeToMatches && dateMatches && passengersMatch && searchMatches && priceMatches && ratingMatches;
+        });
+
+        return [...filtered].sort((a,b) =>{
+            if(state.sortBy === "date-desc"){
+                return `${b.date} ${b.time}`.localeCompare(`${a.date} ${a.time}`);
+            }
+
+            if(state.sortBy === "price-asc"){
+                return a.price - b.price;
+            }
+
+            if(state.sortBy === "price-desc"){
+                return b.price - a.price;
+            }
+            return `${a.date} ${a.time}`.localeCompare(`${b.date} ${b.time}`);
+
+        });
+    }
+    
+    function render(){
+        const visibleRides = getVisibleRides();
+        console.log(visibleRides);
+        routesContainer.replaceChildren();
+
+        if(visibleRides.length === 0){
+            resultsCount.textContent = `Подходящих поездок нет`;
+            return;
+        }else{
+            resultsCount.textContent = `Найдено поездок: ${visibleRides.length}`;
+        }
+
+        visibleRides.forEach((ride) => {
+            routesContainer.append(buildRideCard(ride));
+        })
+        console.log(routesContainer);
+
+    }
+
+    function updateUrl(){
+        const nextParams = new URLSearchParams();
+
+        if(state.route.from) nextParams.set("from", state.route.from);
+        if(state.route.to) nextParams.set("to", state.route.to);
+        if(state.route.date) nextParams.set("date", state.route.date);
+        nextParams.set("seats", String(state.route.passangers));
+
+        const nextUrl = `${window.location.pathname}?${nextParams.toString()}`;
+        history.replaceState(null, "", nextUrl);
+
+    }
+
+    searchForm.addEventListener("submit", (event) =>{
+        event.preventDefault();
+
+        state.route.from = fromInput.value.trim();
+        state.route.to = toInput.value.trim();
+        state.route.date = dateInput.value;
+        state.route.passangers = Number(passengersInput.value) || 1;
+
+        updateUrl();
+        render();
+    });
+
+    searchQueryInput.addEventListener("input", () =>{
+        state.searchQuery = searchQueryInput.value;
+        render();
+    });
+
+    categoryFilter.addEventListener("change", () =>{
+        state.selectedCategory = categoryFilter.value;
+        render();
+    });
+
+    maxPriceInput.addEventListener("input", () => {
+        const value = maxPriceInput.value;
+        state.maxPrice = value === "" ? null: Number(value);
+        render();
+    });
+
+    minRatingSelect.addEventListener("change", () => {
+        state.minRating = Number(minRatingSelect.value);
+        render();
+    });
+
+    sortSelect.addEventListener("click", () => {
+        state.sortBy = sortSelect.value;
+        render();
+    });
+
+    resetButton.addEventListener("click", () => {
+        state.searchQuery = "";
+        state.selectedCategory = "all";
+        state.maxPrice = null;
+        state.minRating = 0;
+        state.sortBy = "date-asc";
+
+        searchQueryInput.value = "";
+        categoryFilter.value = "all";
+        maxPriceInput.value = "";
+        minRatingSelect.value = "0";
+        sortSelect.value = "date-asc";
+
+        render();
+    });
+    
+    render();
 }
+
 
 
 initHomePage();

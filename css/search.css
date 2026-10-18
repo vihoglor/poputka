@@ -141,14 +141,14 @@
     gap: 16px;
 }
 
-/* Карточка поездки */
 .ride-card {
     display: grid;
     grid-template-columns: minmax(0, 1fr) 210px 180px;
+    
     grid-template-areas:
-        "time driver price"
-        "city driver seats"
-        ".    driver actions";
+        "time  driver price"
+        "city  driver seats"
+        ".     driver button";
 
     align-items: center;
     gap: 14px 28px;
@@ -168,13 +168,13 @@
     box-shadow: 0 8px 24px rgba(30, 41, 59, 0.08);
 }
 
-/* Убираем лишние уровни для размещения элементов в общей сетке */
+
 .ride-card-top,
 .ride-header {
     display: contents;
 }
 
-/* Время и дата */
+
 .ride-time-block {
     grid-area: time;
     display: flex;
@@ -194,7 +194,7 @@
     color: #64748b;
 }
 
-/* Маршрут */
+
 .ride-city {
     grid-area: city;
     font-size: 19px;
@@ -204,28 +204,22 @@
     overflow-wrap: anywhere;
 }
 
-/* Цена */
+
 .ride-price {
     grid-area: price;
     font-size: 25px;
     font-weight: 700;
     color: #243047;
+    justify-self: start;
 }
 
-.ride-price small {
-    font-size: 13px;
-    font-weight: 400;
-    color: #64748b;
-}
 
-/* Свободные места */
 .ride-seats {
     grid-area: seats;
-    color: #375ca8;
-    font-size: 14px;
+    justify-self: start;
 }
 
-/* Водитель */
+
 .driver-info {
     grid-area: driver;
     display: flex;
@@ -259,18 +253,15 @@
     color: #b7791f;
 }
 
-/* Кнопка бронирования */
-.ride-actions {
-    grid-area: actions;
-    min-width: 0;
+
+.btn-rides {
+    grid-area: button;
+    width: 100%; 
+    max-width: unset; 
+    padding: 10px 0; 
+    text-align: center;
 }
 
-.ride-actions button {
-    width: 100%;
-    min-height: 44px;
-    padding: 10px 14px;
-    cursor: pointer;
-}
 
 /* Модальное окно */
 

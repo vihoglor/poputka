@@ -11,20 +11,20 @@
     <script src="./js/app.js" defer></script>
     <title>Попутка</title>
 </head>
-<body>
+<body id="body">
     <div class="glass-bg-sphere sphere-1"></div>
     <div class="glass-bg-sphere sphere-2"></div>
     <div class="glass-bg-sphere sphere-3"></div>
     <header>
         <div class="container">
             <div class="menu">
-                <a href="index.html" class="logo">
+                <a href="#body" class="logo">
                     <img src="./img/04_p_icon.svg" alt="Попутка">
                   
                     <!-- <h1 class="title header-title">Попутка</h1> -->
                 </a>
                 <nav class="nav-menu">
-                        <a href="">Как это работает</a>
+                        <a href="#step-grid">Как это работает</a>
                         <a href="">Водителям</a>
                         <a href="">Войти</a>
                         <button class="btn-primary">Предложить поездку</button>         
@@ -34,7 +34,7 @@
         
     </header>
     <main>
-        <section class="hero">
+        <section class="hero" id="hero">
             <div class="container">
                 <div class="hero-block">
                     <h2 class="title hero-title">
@@ -92,7 +92,7 @@
                 <h2 class="section-title">Просто по пути</h2>
                 <p class="section-subtitle">Всего несколько шагов — и вы уже планируете поездку</p>
                 
-                <div class="steps-grid">
+                <div class="steps-grid" id="step-grid">
                     <div class="step-item glass-element">
                         <div class="step-number">01</div>
                         <div class="step-content">
