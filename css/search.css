@@ -1,0 +1,633 @@
+
+/* Заголовок страницы поиска */
+
+.search-page-heading {
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.search-page-heading .section-title {
+    margin-bottom: 10px;
+}
+
+
+/* Основная сетка: фильтры + результаты */
+
+.main-search-section {
+    padding: 30px 0 80px;
+}
+
+.search-layout {
+    display: grid;
+    grid-template-columns: minmax(230px, 280px) minmax(0, 1fr);
+    gap: 28px;
+    align-items: start;
+}
+
+.filter-block {
+    min-width: 0;
+    padding: 24px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+}
+
+.filter-title {
+    margin: 0;
+    font-size: 22px;
+}
+
+.filter-field,
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+}
+
+.filter-field label,
+.form-field label {
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.filter-field input,
+.filter-field select,
+.form-field input,
+.sort-control select {
+    width: 100%;
+    min-width: 0;
+    min-height: 44px;
+    padding: 10px 12px;
+    border: 1px solid rgba(100, 116, 139, 0.25);
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.8);
+    color: #243047;
+    font: inherit;
+}
+
+.filter-field input:focus,
+.filter-field select:focus,
+.form-field input:focus,
+.sort-control select:focus {
+    outline: 2px solid rgba(91, 125, 210, 0.45);
+    outline-offset: 2px;
+}
+
+.reset-filters {
+    width: 100%;
+    min-height: 42px;
+    cursor: pointer;
+}
+
+
+/* Заголовок результатов и сортировка */
+
+.routes-block {
+    min-width: 0;
+}
+
+.sort-block {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 18px;
+    padding: 20px 24px;
+    margin-bottom: 22px;
+    border-radius: 18px;
+}
+
+.sort-by{
+    cursor: pointer;
+}
+.results-heading {
+    min-width: 0;
+}
+
+.results-heading .section-title {
+    margin: 0 0 8px;
+    font-size: 23px;
+}
+
+#results-count {
+    margin: 0;
+    color: #64748b;
+    font-size: 14px;
+}
+
+.sort-control {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 0;
+}
+
+.sort-control label {
+    white-space: nowrap;
+    font-size: 14px;
+}
+
+.sort-control select {
+    max-width: 220px;
+}
+
+
+/* Список поездок */
+.routes {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+/* Карточка поездки */
+.ride-card {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 210px 180px;
+    grid-template-areas:
+        "time driver price"
+        "city driver seats"
+        ".    driver actions";
+
+    align-items: center;
+    gap: 14px 28px;
+
+    width: 100%;
+    max-width: unset;
+    padding: 24px 30px;
+    box-sizing: border-box;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(100, 116, 139, 0.12);
+
+    transition: all 0.2s ease;
+}
+
+.ride-card:hover {
+    box-shadow: 0 8px 24px rgba(30, 41, 59, 0.08);
+}
+
+/* Убираем лишние уровни для размещения элементов в общей сетке */
+.ride-card-top,
+.ride-header {
+    display: contents;
+}
+
+/* Время и дата */
+.ride-time-block {
+    grid-area: time;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.ride-time {
+    font-size: 20px;
+    font-weight: 600;
+    color: #243047;
+}
+
+.ride-date {
+    font-size: 14px;
+    color: #64748b;
+}
+
+/* Маршрут */
+.ride-city {
+    grid-area: city;
+    font-size: 19px;
+    font-weight: 600;
+    line-height: 1.5;
+    color: #243047;
+    overflow-wrap: anywhere;
+}
+
+/* Цена */
+.ride-price {
+    grid-area: price;
+    font-size: 25px;
+    font-weight: 700;
+    color: #243047;
+}
+
+.ride-price small {
+    font-size: 13px;
+    font-weight: 400;
+    color: #64748b;
+}
+
+/* Свободные места */
+.ride-seats {
+    grid-area: seats;
+    color: #375ca8;
+    font-size: 14px;
+}
+
+/* Водитель */
+.driver-info {
+    grid-area: driver;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    height: 100%;
+    min-width: 0;
+    padding-left: 24px;
+    border: 0;
+    border-left: 1px solid rgba(100, 116, 139, 0.18);
+}
+
+.driver-avatar {
+    flex: 0 0 46px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #dbeafe, #ede9fe);
+}
+
+.driver-name {
+    font-size: 15px;
+    font-weight: 600;
+    overflow-wrap: anywhere;
+}
+
+.driver-rating {
+    margin-top: 6px;
+    font-size: 14px;
+    color: #b7791f;
+}
+
+/* Кнопка бронирования */
+.ride-actions {
+    grid-area: actions;
+    min-width: 0;
+}
+
+.ride-actions button {
+    width: 100%;
+    min-height: 44px;
+    padding: 10px 14px;
+    cursor: pointer;
+}
+
+/* Модальное окно */
+
+.modal-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: grid;
+    place-items: center;
+    overflow-y: auto;
+    padding: 20px;
+    background: rgba(15, 23, 42, 0.55);
+    backdrop-filter: blur(6px);
+}
+
+.modal-backdrop[hidden] {
+    display: none !important;
+}
+
+.ride-modal {
+    width: min(100%, 640px);
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    padding: 28px;
+    border-radius: 22px;
+    background: #fff;
+    color: #243047;
+    box-shadow: 0 24px 80px rgba(15, 23, 42, 0.25);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
+}
+
+.modal-header h2 {
+    margin: 0;
+    font-size: 24px;
+}
+
+.modal-close {
+    flex: 0 0 40px;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 10px;
+    background: #f1f5f9;
+    color: #334155;
+    font-size: 28px;
+    cursor: pointer;
+}
+
+.modal-description {
+    margin: 12px 0 24px;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+.ride-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.form-field-full {
+    grid-column: 1 / -1;
+}
+
+.field-error {
+    min-height: 16px;
+    color: #b91c1c;
+    font-size: 12px;
+    line-height: 1.4;
+}
+
+.form-field input[aria-invalid="true"] {
+    border-color: #dc2626;
+}
+
+.form-submit-error {
+    color: #b91c1c;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.form-submit-error:empty {
+    display: none;
+}
+
+.modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.modal-actions button {
+    min-height: 44px;
+    cursor: pointer;
+}
+
+body.modal-open {
+    overflow: hidden;
+}
+
+
+/* Адаптивная версия */
+
+/* Планшеты и небольшие ноутбуки */
+@media (max-width: 1000px) {
+    /* Фильтры сверху, результаты снизу */
+    .search-layout {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 24px;
+    }
+
+    .filter-block {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 16px;
+        padding: 22px;
+    }
+
+    .filter-title,
+    .reset-filters {
+        grid-column: 1 / -1;
+    }
+
+    .filter-field {
+        min-width: 0;
+    }
+
+
+    /* Карточка поездки */
+    .ride-card {
+        grid-template-columns: minmax(0, 1fr) minmax(150px, 200px);
+        grid-template-areas:
+            "city price"
+            "time seats"
+            "driver driver"
+            "actions actions";
+        gap: 16px 20px;
+        padding: 22px;
+        box-sizing: border-box;
+    }
+
+    .ride-card-top,
+    .ride-header {
+        display: contents;
+    }
+
+    .ride-city,
+    .ride-time-block,
+    .ride-price,
+    .ride-seats,
+    .driver-info,
+    .ride-actions {
+        min-width: 0;
+    }
+
+    .ride-city {
+        overflow-wrap: anywhere;
+    }
+
+    .ride-price {
+        text-align: right;
+        overflow-wrap: anywhere;
+    }
+
+    .ride-seats {
+        text-align: right;
+        white-space: normal;
+    }
+
+    .driver-info {
+        height: auto;
+        padding: 14px 0 0;
+        border-left: none;
+        border-top: 1px solid rgba(100, 116, 139, 0.18);
+    }
+
+    .ride-actions {
+        display: flex;
+        flex-direction: row;
+        gap: 12px;
+    }
+
+    .ride-actions button {
+        flex: 1;
+        min-width: 0;
+    }
+
+    /* Заголовок результатов */
+    .sort-block {
+        flex-wrap: wrap;
+        gap: 16px;
+    }
+
+    .sort-control {
+        flex-wrap: wrap;
+        min-width: 0;
+    }
+
+    .sort-control select {
+        max-width: 100%;
+    }
+}
+
+
+/* Телефоны и узкие планшеты */
+@media (max-width: 650px) {
+    .search-page-heading {
+        text-align: left;
+    }
+
+    .search-layout {
+        gap: 18px;
+    }
+
+    .filter-block {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+        padding: 18px;
+    }
+
+    .filter-title,
+    .reset-filters {
+        grid-column: auto;
+    }
+
+    .sort-block {
+        align-items: stretch;
+        flex-direction: column;
+        padding: 18px;
+    }
+
+    .results-heading .section-title {
+        font-size: 21px;
+    }
+
+    .sort-control {
+        align-items: stretch;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .sort-control select {
+        width: 100%;
+        max-width: none;
+    }
+
+    /* Карточка в две колонки пока ещё читается */
+    .ride-card {
+        grid-template-columns: minmax(0, 1fr) minmax(120px, 160px);
+        gap: 14px;
+        padding: 18px;
+    }
+
+    .ride-city {
+        font-size: 17px;
+    }
+
+    .ride-price {
+        font-size: 22px;
+    }
+
+    .ride-time {
+        font-size: 18px;
+    }
+
+    .driver-info {
+        gap: 10px;
+    }
+
+    .ride-actions {
+        flex-direction: column;
+    }
+
+    .ride-actions button {
+        width: 100%;
+    }
+
+    /* Модальное окно */
+    .ride-modal {
+        width: 100%;
+        max-width: 100%;
+        padding: 20px;
+        box-sizing: border-box;
+    }
+
+    .ride-form-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 14px;
+    }
+
+    .form-field-full {
+        grid-column: auto;
+    }
+
+    .modal-actions {
+        flex-direction: column-reverse;
+    }
+
+    .modal-actions button {
+        width: 100%;
+    }
+}
+
+
+/* Узкие телефоны */
+@media (max-width: 420px) {
+    .ride-card {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "city"
+            "time"
+            "price"
+            "seats"
+            "driver"
+            "actions";
+        gap: 12px;
+        padding: 16px;
+    }
+
+    .ride-price,
+    .ride-seats {
+        text-align: left;
+    }
+
+    .ride-header {
+        display: contents;
+    }
+
+    .ride-actions {
+        grid-column: auto;
+    }
+
+    .driver-info {
+        padding-top: 12px;
+    }
+
+    .ride-time-block {
+        flex-wrap: wrap;
+    }
+
+    .search-page-heading .section-title {
+        font-size: 24px;
+    }
+
+    .search-page-heading .section-subtitle {
+        font-size: 14px;
+    }
+
+    .modal-header h2 {
+        font-size: 21px;
+    }
+}

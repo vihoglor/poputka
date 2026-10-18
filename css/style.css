@@ -196,7 +196,7 @@ nav a{
   font-weight: 700;
   cursor: pointer;
   width: 100%;
-  transition: background-color 0.2s, color 0.2s, scale 0.2s ease-out;
+  transition: background-color 0.2s, color 0.2s ease-out;
 }
 
 .btn-secondary:hover {
@@ -207,12 +207,12 @@ nav a{
 
 .btn-primary:hover {
   background-color: var(--primary-hover);
-  transform: translateY(-2px);
+  
 }
 
 
 main{
-  padding-top: 60px;
+  padding-top: 0;
 }
 
 .hero{
@@ -264,7 +264,6 @@ main{
 
 .glass-element {
   background: var(--glass-bg);
-  backdrop-filter: blur(20px);
   border: 1px solid var(--glass-border);
   box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.06);
   transition: background 0.3s, border 0.3s, box-shadow 0.3s;
@@ -364,8 +363,8 @@ main{
   padding: 24px;
   display: flex;
   flex-direction: column;
+  height: 100%;
   justify-content: space-between;
-  height: 300px;
   transition: transform 0.3s, background-color 0.3s, box-shadow 0.3s;
 }
 
@@ -389,7 +388,7 @@ main{
 }
 
 .ride-seats {
-  font-size: 12px;
+  font-size: 14px;
   background: rgba(47, 133, 90, 0.1);
   color: var(--accent-green);
   padding: 4px 10px;
@@ -400,7 +399,7 @@ main{
 .ride-time-block {
   display: flex;
   align-items: center;
-  gap: 14px;
+  gap: 12px;
   margin-bottom: 12px;
 }
 
@@ -412,6 +411,12 @@ main{
 }
 
 .ride-city {
+  font-weight: 600;
+  font-size: 16px;
+  color: #1a202c;
+}
+.ride-date{
+  font-size: 16px;
   font-weight: 600;
   color: #1a202c;
 }
@@ -428,13 +433,13 @@ main{
 .driver-avatar {
   width: 42px;
   height: 42px;
-  background: rgba(0, 119, 255, 0.05);
+  background: url('../img/avatar.png') no-repeat center center / cover;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   font-weight: 700;
-  border: 1px solid var(--glass-border);
+
   color: var(--primary);
 }
 
@@ -453,6 +458,10 @@ main{
 .rides-count {
   color: var(--text-muted);
   font-weight: normal;
+}
+.btn-rides{
+  text-align: center;
+  font-size: 18px;
 }
 
 
@@ -559,14 +568,14 @@ main{
     gap: 0;
     row-gap: 20px ;
     justify-content: start; 
-    max-width: 600px;
+    max-width: 760px;
     width: 100%;
     margin: 0 auto;
   }
 
   .ride-card {
     padding: 12px;
-    max-width: 280px;
+    max-width: 360px;
     width: 100%;
     justify-self: center;
   }
@@ -575,6 +584,7 @@ main{
     width: 60%;
     display: block;
     margin: 0 auto;
+    font-size: 16;
   }
 
   .logo {
@@ -589,8 +599,11 @@ main{
   }
 
   .btn-primary{
-    font-size: 10px;
-    padding: 6px 10px;
+    font-size: 14px;
+    padding: 6px 12px;
+  }
+  .search-btn{
+    padding: 14px 12px;
   }
 
   header {
@@ -603,7 +616,7 @@ main{
   }
 
   .menu{
-    height: 40px;
+    height: 46px;
   }
 }
 
