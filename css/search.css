@@ -226,9 +226,10 @@
     align-items: center;
     gap: 12px;
 
+    align-self: stretch; 
     height: 100%;
     min-width: 0;
-    padding-left: 24px;
+    padding: 0 24px;
     border: 0;
     border-left: 1px solid rgba(100, 116, 139, 0.18);
 }
@@ -263,113 +264,6 @@
 }
 
 
-/* Модальное окно */
-
-.modal-backdrop {
-    position: fixed;
-    inset: 0;
-    z-index: 1000;
-    display: grid;
-    place-items: center;
-    overflow-y: auto;
-    padding: 20px;
-    background: rgba(15, 23, 42, 0.55);
-    backdrop-filter: blur(6px);
-}
-
-.modal-backdrop[hidden] {
-    display: none !important;
-}
-
-.ride-modal {
-    width: min(100%, 640px);
-    max-height: calc(100vh - 40px);
-    overflow-y: auto;
-    padding: 28px;
-    border-radius: 22px;
-    background: #fff;
-    color: #243047;
-    box-shadow: 0 24px 80px rgba(15, 23, 42, 0.25);
-}
-
-.modal-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
-}
-
-.modal-header h2 {
-    margin: 0;
-    font-size: 24px;
-}
-
-.modal-close {
-    flex: 0 0 40px;
-    width: 40px;
-    height: 40px;
-    border: 0;
-    border-radius: 10px;
-    background: #f1f5f9;
-    color: #334155;
-    font-size: 28px;
-    cursor: pointer;
-}
-
-.modal-description {
-    margin: 12px 0 24px;
-    color: #64748b;
-    line-height: 1.5;
-}
-
-.ride-form-grid {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 18px;
-}
-
-.form-field-full {
-    grid-column: 1 / -1;
-}
-
-.field-error {
-    min-height: 16px;
-    color: #b91c1c;
-    font-size: 12px;
-    line-height: 1.4;
-}
-
-.form-field input[aria-invalid="true"] {
-    border-color: #dc2626;
-}
-
-.form-submit-error {
-    color: #b91c1c;
-    font-size: 14px;
-    line-height: 1.5;
-}
-
-.form-submit-error:empty {
-    display: none;
-}
-
-.modal-actions {
-    display: flex;
-    justify-content: flex-end;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 20px;
-}
-
-.modal-actions button {
-    min-height: 44px;
-    cursor: pointer;
-}
-
-body.modal-open {
-    overflow: hidden;
-}
-
 
 /* Адаптивная версия */
 
@@ -394,66 +288,6 @@ body.modal-open {
     }
 
     .filter-field {
-        min-width: 0;
-    }
-
-
-    /* Карточка поездки */
-    .ride-card {
-        grid-template-columns: minmax(0, 1fr) minmax(150px, 200px);
-        grid-template-areas:
-            "city price"
-            "time seats"
-            "driver driver"
-            "actions actions";
-        gap: 16px 20px;
-        padding: 22px;
-        box-sizing: border-box;
-    }
-
-    .ride-card-top,
-    .ride-header {
-        display: contents;
-    }
-
-    .ride-city,
-    .ride-time-block,
-    .ride-price,
-    .ride-seats,
-    .driver-info,
-    .ride-actions {
-        min-width: 0;
-    }
-
-    .ride-city {
-        overflow-wrap: anywhere;
-    }
-
-    .ride-price {
-        text-align: right;
-        overflow-wrap: anywhere;
-    }
-
-    .ride-seats {
-        text-align: right;
-        white-space: normal;
-    }
-
-    .driver-info {
-        height: auto;
-        padding: 14px 0 0;
-        border-left: none;
-        border-top: 1px solid rgba(100, 116, 139, 0.18);
-    }
-
-    .ride-actions {
-        display: flex;
-        flex-direction: row;
-        gap: 12px;
-    }
-
-    .ride-actions button {
-        flex: 1;
         min-width: 0;
     }
 
@@ -516,37 +350,6 @@ body.modal-open {
         max-width: none;
     }
 
-    /* Карточка в две колонки пока ещё читается */
-    .ride-card {
-        grid-template-columns: minmax(0, 1fr) minmax(120px, 160px);
-        gap: 14px;
-        padding: 18px;
-    }
-
-    .ride-city {
-        font-size: 17px;
-    }
-
-    .ride-price {
-        font-size: 22px;
-    }
-
-    .ride-time {
-        font-size: 18px;
-    }
-
-    .driver-info {
-        gap: 10px;
-    }
-
-    .ride-actions {
-        flex-direction: column;
-    }
-
-    .ride-actions button {
-        width: 100%;
-    }
-
     /* Модальное окно */
     .ride-modal {
         width: 100%;
@@ -576,39 +379,6 @@ body.modal-open {
 
 /* Узкие телефоны */
 @media (max-width: 420px) {
-    .ride-card {
-        grid-template-columns: minmax(0, 1fr);
-        grid-template-areas:
-            "city"
-            "time"
-            "price"
-            "seats"
-            "driver"
-            "actions";
-        gap: 12px;
-        padding: 16px;
-    }
-
-    .ride-price,
-    .ride-seats {
-        text-align: left;
-    }
-
-    .ride-header {
-        display: contents;
-    }
-
-    .ride-actions {
-        grid-column: auto;
-    }
-
-    .driver-info {
-        padding-top: 12px;
-    }
-
-    .ride-time-block {
-        flex-wrap: wrap;
-    }
 
     .search-page-heading .section-title {
         font-size: 24px;
@@ -620,5 +390,94 @@ body.modal-open {
 
     .modal-header h2 {
         font-size: 21px;
+    }
+}
+
+/* ==========================================================================
+   Адаптивная версия для КАРТОЧКИ ПОЕЗДКИ на странице поиска (search.css)
+   ========================================================================== */
+
+@media (max-width: 1000px) {
+    .ride-card {
+        grid-template-columns: minmax(0, 1fr) minmax(150px, 200px);
+        grid-template-areas:
+            "city  price"
+            "time  seats"
+            "driver driver"
+            "button button";
+        gap: 16px 20px;
+        padding: 22px;
+        max-width: 100% !important; /* Отменяем сжатие из главного CSS */
+    }
+
+    .ride-price, .ride-seats {
+        text-align: right;
+        justify-self: end;
+    }
+
+    .driver-info {
+        height: auto;
+        padding: 14px 0 0;
+        border-left: none; /* На планшетах убираем вертикальную линию */
+        border-top: 1px solid rgba(100, 116, 139, 0.18); /* Меняем её на горизонтальную */
+        align-self: center;
+    }
+
+    .btn-rides {
+        margin-top: 4px;
+        width: 100%;
+    }
+}
+
+@media (max-width: 650px) {
+    .ride-card {
+        grid-template-columns: minmax(0, 1fr) minmax(110px, 140px);
+        gap: 12px 16px;
+        padding: 18px;
+        max-width: 100% !important;
+    }
+
+    .ride-city, .ride-time {
+        font-size: 16px;
+    }
+
+    .ride-price {
+        font-size: 20px;
+    }
+
+    .driver-info {
+        padding-top: 10px;
+    }
+
+    .btn-rides {
+        margin-top: 4px;
+       
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 450px) {
+    .ride-card {
+        grid-template-columns: minmax(0, 1fr);
+        grid-template-areas:
+            "city"
+            "time"
+            "price"
+            "seats"
+            "driver"
+            "button";
+        gap: 12px;
+        padding: 16px;
+        max-width: 100% !important;
+    }
+
+    .ride-price, .ride-seats {
+        text-align: left;
+        justify-self: start;
+    }
+
+    .driver-info {
+        border-top: 1px solid rgba(100, 116, 139, 0.18);
+        padding-top: 12px;
     }
 }

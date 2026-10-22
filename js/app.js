@@ -84,7 +84,17 @@ function createElement(tag, className, text){
 function normalize(value){
     return String(value).trim().toLowerCase();
 }
- 
+
+function dateAfter(days) {
+    const date = new Date();
+    date.setDate(date.getDate() + days);
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return `${year}-${month}-${day}`;
+}
+
+
 // создание карточки маршрута
 function buildRideCard(ride){
     const card = createElement("div", "ride-card glass-element");
@@ -123,37 +133,216 @@ function buildRideCard(ride){
 }
 
 // выгрузка карточек
+
 function initHomePage() {
     const popularContainer = document.querySelector("#popular-rides");
     const searchForm = document.querySelector("#search-form");
 
-    if(!popularContainer || !searchForm) return;
-    const rides = loadRides()
+    const modal = document.querySelector("#ride-modal");
+    const openModalButton = document.querySelector("#open-ride-modal");
+    const rideForm = document.querySelector("#ride-form");
+    const rideFormError = document.querySelector("#ride-form-error");
 
-    const popularRides = [...rides]
-        .sort((a, b) => (b.popularity ?? 0) - (a.popularity ?? 0))
-        .slice(0, 4);
+    const rideFromInput = document.querySelector("#ride-from");
+    const rideDateInput = document.querySelector("#ride-date");
+    const rideSeatsInput = document.querySelector("#ride-seats");
 
-    popularContainer.replaceChildren();
-    popularRides.forEach((ride) => {
-        const card = buildRideCard(ride);
-        popularContainer.append(card);
-    });
+    if (!popularContainer || !searchForm) return;
 
-    searchForm.addEventListener("submit", (event) =>{
+    let rides = loadRides();
+
+    function renderPopularRides() {
+        const popularRides = [...rides]
+            .sort((a, b) => (b.popularity ?? 0) - (a.popularity ?? 0))
+            .slice(0, 4);
+
+        popularContainer.replaceChildren();
+
+        popularRides.forEach((ride) => {
+            popularContainer.append(buildRideCard(ride));
+        });
+    }
+
+    renderPopularRides();
+
+    // Поиск поездок
+    searchForm.addEventListener("submit", (event) => {
         event.preventDefault();
+
         const from = document.querySelector("#from").value.trim();
         const to = document.querySelector("#to").value.trim();
         const date = document.querySelector("#date").value;
-        const passengers = document.querySelector("#passengers").value || "1";
+        const passengers =
+            document.querySelector("#passengers").value || "1";
+
         const params = new URLSearchParams({
-            from, to, date, seats: passengers
+            from,
+            to,
+            date,
+            seats: passengers
         });
 
-        window.location.href = `../search.html?${params.toString()}`;
+        window.location.href = `./search.html?${params.toString()}`;
     });
-    
+
+    // Если модального окна нет, не подключаем его обработчики
+    if (!modal || !openModalButton || !rideForm || !rideFormError) {
+        return;
+    }
+
+    function showFieldError(input, message) {
+        const errorElement = rideForm.querySelector(
+            `[data-error-for="${input.id}"]`
+        );
+
+        input.setAttribute("aria-invalid", message ? "true" : "false");
+
+        if (errorElement) {
+            errorElement.textContent = message;
+        }
+    }
+
+    function clearFormErrors() {
+        rideForm.querySelectorAll("input").forEach((input) => {
+            showFieldError(input, "");
+        });
+
+        rideFormError.textContent = "";
+    }
+
+    function openModal() {
+        modal.hidden = false;
+        document.body.classList.add("modal-open");
+
+        if (rideDateInput) {
+            rideDateInput.min = dateAfter(0);
+        }
+
+        clearFormErrors();
+        rideFromInput?.focus();
+    }
+
+    function closeModal() {
+        modal.hidden = true;
+        document.body.classList.remove("modal-open");
+        rideFormError.textContent = "";
+    }
+
+    // Открытие окна
+    openModalButton.addEventListener("click", openModal);
+
+    // Закрытие крестиком, кнопкой отмены или кликом по фону
+    modal.addEventListener("click", (event) => {
+        if (
+            event.target === modal ||
+            event.target.closest("[data-close-modal]")
+        ) {
+            closeModal();
+        }
+    });
+
+    // Закрытие клавишей Escape
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !modal.hidden) {
+            closeModal();
+        }
+    });
+
+    function getValidationMessage(input) {
+        const label =
+            input.closest(".form-field")?.querySelector("label")?.textContent
+            || "Поле";
+
+        if (input.validity.valueMissing) {
+            return `${label}: заполните поле.`;
+        }
+
+        if (input.validity.tooShort) {
+            return `${label}: слишком короткое значение.`;
+        }
+
+        if (input.validity.rangeUnderflow) {
+            return `${label}: значение меньше допустимого.`;
+        }
+
+        if (input.validity.rangeOverflow) {
+            return `${label}: значение больше допустимого.`;
+        }
+
+        if (input.validity.stepMismatch) {
+            return `${label}: введите корректное число.`;
+        }
+
+        return "Проверьте значение поля.";
+    }
+
+    function validateRideForm() {
+        let isValid = true;
+
+        rideForm.querySelectorAll("input").forEach((input) => {
+            if (!input.validity.valid) {
+                showFieldError(input, getValidationMessage(input));
+                isValid = false;
+            } else {
+                showFieldError(input, "");
+            }
+        });
+
+        return isValid;
+    }
+
+    // Убираем ошибку при исправлении поля
+    rideForm.addEventListener("input", (event) => {
+        const input = event.target;
+
+        if (input.matches("input") && input.validity.valid) {
+            showFieldError(input, "");
+            rideFormError.textContent = "";
+        }
+    });
+
+    // Создание новой поездки
+    rideForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        rideFormError.textContent = "";
+
+        if (!validateRideForm()) {
+            rideFormError.textContent =
+                "Исправьте ошибки в форме и попробуйте ещё раз.";
+            return;
+        }
+
+        const newRide = {
+            id: Date.now(),
+            from: document.querySelector("#ride-from").value.trim(),
+            to: document.querySelector("#ride-to").value.trim(),
+            date: document.querySelector("#ride-date").value,
+            time: document.querySelector("#ride-time").value,
+            price: Number(document.querySelector("#ride-price").value),
+            seats: Number(document.querySelector("#ride-seats").value),
+            driver: document.querySelector("#ride-driver").value.trim(),
+            rating: 0,
+            popularity: 0
+        };
+
+        rides = [...rides, newRide];
+
+        saveRides(rides);
+        renderPopularRides();
+
+        rideForm.reset();
+
+        if (rideSeatsInput) {
+            rideSeatsInput.value = "3";
+        }
+
+        clearFormErrors();
+        closeModal();
+    });
 }
+
+
+ 
 
 
 
@@ -176,6 +365,12 @@ function initSearchPage(){
     const resetButton = document.querySelector("#reset-filters");
     const resultsCount = document.querySelector("#results-count");
 
+    const modal = document.querySelector("#ride-modal");
+    const openModalButton = document.querySelector("#open-ride-modal");
+    const rideForm = document.querySelector("#ride-form");
+    const rideFormError = document.querySelector("#ride-form-error");
+
+
 
 
     const params = new URLSearchParams(window.location.search);
@@ -194,6 +389,7 @@ function initSearchPage(){
         minRating: 0,
         sortBy: "date-asc"
     };
+
 
     fromInput.value = state.route.from;
     toInput.value = state.route.to;
@@ -317,8 +513,119 @@ function initSearchPage(){
         render();
     });
     
+    function openModal() {
+        modal.hidden = false;
+        document.body.classList.add("modal-open");
+        const minDate = dateAfter(0);
+        document.querySelector("#ride-date").min = minDate;
+        document.querySelector("#ride-from").focus();
+    }
+
+    function closeModal() {
+        modal.hidden = true;
+        document.body.classList.remove("modal-open");
+        rideFormError.textContent = "";
+    }
+
+    openModalButton.addEventListener("click", openModal);
+
+    modal.addEventListener("click", (event) => {
+        if (event.target === modal || event.target.closest("[data-close-modal]")) {
+            closeModal();
+        }
+    });
+
+    document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && !modal.hidden) {
+            closeModal();
+        }
+    });
+
+    function getValidationMessage(input) {
+        const label = input.closest(".form-field")?.querySelector("label")?.textContent || "Поле";
+
+        if (input.validity.valueMissing) {
+            return `${label}: заполните поле.`;
+        }
+        if (input.validity.tooShort) {
+            return `${label}: слишком короткое значение.`;
+        }
+        if (input.validity.rangeUnderflow) {
+            return `${label}: значение меньше допустимого.`;
+        }
+        if (input.validity.rangeOverflow) {
+            return `${label}: значение больше допустимого.`;
+        }
+        if (input.validity.stepMismatch) {
+            return `${label}: введите корректное число.`;
+        }
+        return "Проверьте значение поля.";
+    }
+
+    function showFieldError(input, message) {
+        const errorElement = rideForm.querySelector(`[data-error-for="${input.id}"]`);
+        input.setAttribute("aria-invalid", message ? "true" : "false");
+        if (errorElement) {
+            errorElement.textContent = message;
+        }
+    }
+
+    function validateRideForm() {
+        const inputs = [...rideForm.querySelectorAll("input")];
+        let isValid = true;
+
+        inputs.forEach((input) => {
+            if (!input.validity.valid) {
+                showFieldError(input, getValidationMessage(input));
+                isValid = false;
+            } else {
+                showFieldError(input, "");
+            }
+        });
+
+        return isValid;
+    }
+
+    rideForm.addEventListener("input", (event) => {
+        if (event.target.matches("input") && event.target.validity.valid) {
+            showFieldError(event.target, "");
+        }
+    });
+
+    rideForm.addEventListener("submit", (event) => {
+        event.preventDefault();
+        rideFormError.textContent = "";
+
+        if (!validateRideForm()) {
+            rideFormError.textContent = "Исправьте ошибки в форме и попробуйте ещё раз.";
+            return;
+        }
+
+        const newRide = {
+            id: Date.now(),
+            from: document.querySelector("#ride-from").value.trim(),
+            to: document.querySelector("#ride-to").value.trim(),
+            date: document.querySelector("#ride-date").value,
+            time: document.querySelector("#ride-time").value,
+            price: Number(document.querySelector("#ride-price").value),
+            seats: Number(document.querySelector("#ride-seats").value),
+            driver: document.querySelector("#ride-driver").value.trim(),
+            rating: 0,
+            popularity: 0
+        };
+
+        state.items = [...state.items, newRide];
+        saveRides(state.items);
+        rideForm.reset();
+        document.querySelector("#ride-seats").value = "3";
+        closeModal();
+        render();
+    });
+
+
     render();
 }
+
 
 
 

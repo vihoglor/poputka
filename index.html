@@ -27,7 +27,7 @@
                         <a href="#step-grid">Как это работает</a>
                         <a href="">Водителям</a>
                         <a href="">Войти</a>
-                        <button class="btn-primary">Предложить поездку</button>         
+                        <button class="btn-primary btn-header" id="open-ride-modal">Предложить поездку</button>         
                 </nav>
             </div>
         </div>
@@ -118,6 +118,148 @@
             </div>
         </section>
     </main>
+
+    <div
+        class="modal-backdrop"
+        id="ride-modal"
+        hidden
+    >
+        <section
+            class="ride-modal glass-element"
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="ride-modal-title"
+        >
+            <div class="modal-header">
+                <h2 id="ride-modal-title">Предложить поездку</h2>
+
+                <button
+                    type="button"
+                    class="modal-close"
+                    data-close-modal
+                    aria-label="Закрыть окно"
+                >
+                    ×
+                </button>
+            </div>
+
+            <p class="modal-description">
+                Заполните информацию о маршруте и стоимости поездки.
+            </p>
+
+            <form id="ride-form" novalidate>
+                <div class="ride-form-grid">
+
+                    <div class="form-field">
+                        <label for="ride-from">Откуда</label>
+                        <input
+                            type="text"
+                            id="ride-from"
+                            minlength="2"
+                            maxlength="60"
+                            required
+                            placeholder="Город отправления"
+                        >
+                        <small class="field-error" data-error-for="ride-from"></small>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="ride-to">Куда</label>
+                        <input
+                            type="text"
+                            id="ride-to"
+                            minlength="2"
+                            maxlength="60"
+                            required
+                            placeholder="Город прибытия"
+                        >
+                        <small class="field-error" data-error-for="ride-to"></small>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="ride-date">Дата отправления</label>
+                        <input
+                            type="date"
+                            id="ride-date"
+                            required
+                        >
+                        <small class="field-error" data-error-for="ride-date"></small>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="ride-time">Время отправления</label>
+                        <input
+                            type="time"
+                            id="ride-time"
+                            required
+                        >
+                        <small class="field-error" data-error-for="ride-time"></small>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="ride-price">Цена за место, ₽</label>
+                        <input
+                            type="number"
+                            id="ride-price"
+                            min="0"
+                            max="1000000"
+                            step="1"
+                            required
+                            placeholder="650"
+                        >
+                        <small class="field-error" data-error-for="ride-price"></small>
+                    </div>
+
+                    <div class="form-field">
+                        <label for="ride-seats">Свободные места</label>
+                        <input
+                            type="number"
+                            id="ride-seats"
+                            min="1"
+                            max="8"
+                            step="1"
+                            required
+                            value="3"
+                        >
+                        <small class="field-error" data-error-for="ride-seats"></small>
+                    </div>
+
+                    <div class="form-field form-field-full">
+                        <label for="ride-driver">Имя водителя</label>
+                        <input
+                            type="text"
+                            id="ride-driver"
+                            minlength="2"
+                            maxlength="60"
+                            required
+                            placeholder="Ваше имя"
+                        >
+                        <small class="field-error" data-error-for="ride-driver"></small>
+                    </div>
+                </div>
+
+                <p
+                    class="form-submit-error"
+                    id="ride-form-error"
+                    role="alert"
+                ></p>
+
+                <div class="modal-actions">
+                    <button
+                        type="button"
+                        class="btn-secondary"
+                        data-close-modal
+                    >
+                        Отмена
+                    </button>
+
+                    <button type="submit" class="btn-primary">
+                        Создать поездку
+                    </button>
+                </div>
+            </form>
+        </section>
+    </div>
 
     <footer class="footer glass-element">
         <div class="container footer-inner">
