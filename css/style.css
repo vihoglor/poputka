@@ -273,6 +273,7 @@ main{
 }
 
 .search-group{
+  position: relative;
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -362,6 +363,7 @@ main{
 }
 
 .ride-card {
+  position: relative;
   border-radius: 20px;
   padding: 24px;
   display: flex;
@@ -397,6 +399,8 @@ main{
   padding: 4px 10px;
   border-radius: 20px;
   font-weight: 700;
+
+  
 }
 
 .ride-time-block {
@@ -467,6 +471,26 @@ main{
   font-size: 18px;
 }
 
+.btn-del{
+  all: unset;
+
+  display: block !important;
+  position: absolute !important;
+  top: 0;
+  right: 0;
+  padding: 6px 12px;
+  cursor: pointer;
+  width: unset !important;
+  color: #6d6d6d;
+  font-size: 16px !important;
+}
+
+
+.btn-del:hover {
+  color: #000;
+  border: 0;
+  background-color: transparent;
+}
 
 .steps-section {
   padding: 60px 0;
@@ -704,6 +728,9 @@ body.modal-open {
     font-size: 16px;
   }
 
+  .ride-seats{
+    margin-right: 16px;
+  }
   .logo {
     width: 120px;
   }
@@ -784,7 +811,10 @@ body.modal-open {
   .btn-rides{
     font-size: 14px;
     width: 60%;
-    padding: 10px 0px;
+    
+  }
+  .btn-del{
+    padding: 6px 12px;
   }
   
   .ride-price{

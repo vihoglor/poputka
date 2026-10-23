@@ -143,12 +143,12 @@
 
 .ride-card {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 210px 180px;
+    grid-template-columns: minmax(0, 1fr) 200px 150px 30px;
     
     grid-template-areas:
-        "time  driver price"
-        "city  driver seats"
-        ".     driver button";
+        "time  driver price price"
+        "city  driver seats seats"
+        ".     driver button button2";
 
     align-items: center;
     gap: 14px 28px;
@@ -223,6 +223,8 @@
 .driver-info {
     grid-area: driver;
     display: flex;
+    flex-direction: column;
+    justify-content: center;
     align-items: center;
     gap: 12px;
 
@@ -234,6 +236,11 @@
     border-left: 1px solid rgba(100, 116, 139, 0.18);
 }
 
+.driver-info-block{
+    display: flex;
+    flex-direction: row;
+  
+}
 .driver-avatar {
     flex: 0 0 46px;
     width: 46px;
@@ -243,13 +250,13 @@
 }
 
 .driver-name {
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 600;
     overflow-wrap: anywhere;
 }
 
 .driver-rating {
-    margin-top: 6px;
+    margin-left: 6px;
     font-size: 14px;
     color: #b7791f;
 }
@@ -259,11 +266,60 @@
     grid-area: button;
     width: 100%; 
     max-width: unset; 
-    padding: 10px 0; 
+    
     text-align: center;
 }
 
+.btn-del{
+    grid-area: button2;
 
+    font-size: 24px !important;
+    padding: 0 !important;
+    width: 100% !important; 
+
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.custom-dropdown {
+  position: absolute;
+  top: 100%; 
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid rgba(100, 116, 139, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1);
+  margin-top: 8px;
+  padding: 0;
+  list-style: none;
+  z-index: 1000;
+  
+
+  display: none; 
+}
+
+
+.custom-dropdown li {
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #243047;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+
+.custom-dropdown li:hover {
+  background: #f1f5f9;
+  color: #0077ff; 
+}
+
+
+.custom-dropdown.show {
+  display: block;
+}
 
 /* Адаптивная версия */
 
@@ -399,12 +455,11 @@
 
 @media (max-width: 1000px) {
     .ride-card {
-        grid-template-columns: minmax(0, 1fr) minmax(150px, 200px);
+        grid-template-columns: minmax(0, 1fr) 200px 150px 30px;
         grid-template-areas:
-            "city  price"
-            "time  seats"
-            "driver driver"
-            "button button";
+            "time  driver price price"
+            "city  driver seats seats"
+            ".     driver button button2";
         gap: 16px 20px;
         padding: 22px;
         max-width: 100% !important; /* Отменяем сжатие из главного CSS */
@@ -416,10 +471,8 @@
     }
 
     .driver-info {
-        height: auto;
-        padding: 14px 0 0;
-        border-left: none; /* На планшетах убираем вертикальную линию */
-        border-top: 1px solid rgba(100, 116, 139, 0.18); /* Меняем её на горизонтальную */
+        
+
         align-self: center;
     }
 
@@ -431,7 +484,7 @@
 
 @media (max-width: 650px) {
     .ride-card {
-        grid-template-columns: minmax(0, 1fr) minmax(110px, 140px);
+        grid-template-columns: minmax(0, 1fr) 140px 150px 30px;
         gap: 12px 16px;
         padding: 18px;
         max-width: 100% !important;
@@ -446,7 +499,9 @@
     }
 
     .driver-info {
-        padding-top: 10px;
+        padding: 0 5px;
+        border-right: 1px solid rgba(100, 116, 139, 0.18);;
+
     }
 
     .btn-rides {
@@ -458,14 +513,14 @@
 
 @media (max-width: 450px) {
     .ride-card {
-        grid-template-columns: minmax(0, 1fr);
+        grid-template-columns: minmax(0, 1fr) 30px;
         grid-template-areas:
-            "city"
-            "time"
-            "price"
-            "seats"
-            "driver"
-            "button";
+            "city button2"
+            "time time"
+            "price price"
+            "seats seats"
+            "driver driver"
+            "button button";
         gap: 12px;
         padding: 16px;
         max-width: 100% !important;
@@ -479,5 +534,10 @@
     .driver-info {
         border-top: 1px solid rgba(100, 116, 139, 0.18);
         padding-top: 12px;
+        border-left: 0;
+    }
+
+    .btn-del{
+        margin: 0;
     }
 }
