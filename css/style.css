@@ -643,6 +643,46 @@ main{
 body.modal-open {
     overflow: hidden;
 }
+.custom-dropdown {
+  position: absolute;
+  top: 100%; 
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background: #ffffff;
+  border: 1px solid rgba(100, 116, 139, 0.2);
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.1);
+  margin-top: 8px;
+  padding: 0;
+  list-style: none;
+  z-index: 1000;
+  
+
+  display: none; 
+}
+
+
+.custom-dropdown li {
+  padding: 10px 16px;
+  font-size: 14px;
+  color: #243047;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+
+.custom-dropdown li:hover {
+  background: #f1f5f9;
+  color: #0077ff; 
+}
+
+
+.custom-dropdown.show {
+  display: block;
+}
+
 
 .footer {
   border-radius: 20px 20px 0 0;
