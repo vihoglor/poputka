@@ -338,7 +338,7 @@ function initCustomDropdown(input, dropdown) {
                 ? ""
                 : "none";
         });
-
+        
         dropdown.classList.add("show");
     }
 
@@ -376,7 +376,17 @@ function render() {
     const popularContainer = document.querySelector("#popular-rides");
 
     if (popularContainer) {
-        console.log(state.items);
+        renderCityOptions(
+            state.items,
+            "from",
+            document.querySelector("#from-dropdown")
+        );
+
+        renderCityOptions(
+            state.items,
+            "to",
+            document.querySelector("#to-dropdown")
+        );
         const popularRides = [...state.items]
             .sort(
                 (a, b) =>
@@ -391,17 +401,7 @@ function render() {
             popularContainer.append(buildRideCard(ride));
         });
 
-         renderCityOptions(
-            state.items,
-            "from",
-            document.querySelector("#from-dropdown")
-        );
-
-        renderCityOptions(
-            state.items,
-            "to",
-            document.querySelector("#to-dropdown")
-        );
+         
     }
 
     const routesContainer = document.querySelector("#routes");
@@ -465,6 +465,16 @@ function initHomePage() {
     const popularContainer = document.querySelector("#popular-rides");
     const searchForm = document.querySelector("#search-form");
 
+    initCustomDropdown(
+        fromInput,
+        document.querySelector("#from-dropdown")
+    );
+
+    initCustomDropdown(
+        toInput,
+        document.querySelector("#to-dropdown")
+    );
+    
     if (!popularContainer || !searchForm) {
         return;
     }
