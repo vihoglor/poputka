@@ -476,7 +476,6 @@ function initHomePage() {
 
         window.location.href = "./search.html?" + params.toString();
     });
-    popularContainer.addEventListener("click", handleRideDelete);
 }
 
 function initSearchPage() {
@@ -582,7 +581,6 @@ function initSearchPage() {
         render();
     });
 
-    routesContainer.addEventListener("click", handleRideDelete);
 }
 
 function initRideModal() {
