@@ -209,27 +209,10 @@ function buildRideCard(ride) {
         alert("Поездка забронирована");
     });
 
-    const deleteButton = createElement(
-        "button",
-        "btn-secondary btn-rides btn-del",
-        "×"
-    );
-
-    deleteButton.type = "button";
-    deleteButton.dataset.deleteId = String(ride.id);
-
-    deleteButton.setAttribute(
-        "aria-label",
-        "Удалить поездку " +
-            String(ride.from || "") +
-            " → " +
-            String(ride.to || "")
-    );
-
     driverText.append(driverName, driverRating);
     driverInfo.append(avatar, driverText);
 
-    card.append(top, driverInfo, bookingButton, deleteButton);
+    card.append(top, driverInfo, bookingButton);
 
     return card;
 }
@@ -439,28 +422,6 @@ function render() {
             routesContainer.append(buildRideCard(ride));
         });
     }
-}
-
-function handleRideDelete(event) {
-    const deleteButton = event.target.closest
-        ? event.target.closest("[data-delete-id]")
-        : null;
-
-    if (
-        !deleteButton ||
-        !event.currentTarget.contains(deleteButton)
-    ) {
-        return;
-    }
-
-    const id = Number(deleteButton.dataset.deleteId);
-
-    state.items = state.items.filter(
-        (ride) => Number(ride.id) !== id
-    );
-
-    saveRides();
-    render();
 }
 
 function updateUrl() {
