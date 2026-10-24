@@ -307,7 +307,7 @@ function renderCityOptions(items, property, dropdown) {
 
     const values = [...new Set(
         items
-            .map((ride) => String(ride[property] ?? "").trim())
+            .map((ride) => normalize(String(ride[property] ?? "")))
             .filter(Boolean)
     )].sort((a, b) => a.localeCompare(b, "ru"));
 
