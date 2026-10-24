@@ -390,6 +390,18 @@ function render() {
         popularRides.forEach((ride) => {
             popularContainer.append(buildRideCard(ride));
         });
+
+         renderCityOptions(
+            state.items,
+            "from",
+            document.querySelector("#from-dropdown")
+        );
+
+        renderCityOptions(
+            state.items,
+            "to",
+            document.querySelector("#to-dropdown")
+        );
     }
 
     const routesContainer = document.querySelector("#routes");
