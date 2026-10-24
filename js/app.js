@@ -464,7 +464,8 @@ function updateUrl() {
 function initHomePage() {
     const popularContainer = document.querySelector("#popular-rides");
     const searchForm = document.querySelector("#search-form");
-
+    const fromInput = document.querySelector("#from");
+    const toInput = document.querySelector("#to");
     initCustomDropdown(
         fromInput,
         document.querySelector("#from-dropdown")
