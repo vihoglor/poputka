@@ -108,6 +108,10 @@ body{
   color: #0f172a;
 }
 
+.offer-section-title{
+  margin-bottom: 30px;
+}
+
 .header-title{
   font-family: "Great Vibes", cursive;
   font-weight: 400;

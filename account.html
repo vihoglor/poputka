@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Личный кабинет — Попутка</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/pages.css?v=5">
+    <script src="./js/config.js?v=5" defer></script>
+    <script src="./js/app.js?v=5" defer></script>
+</head>
+<body>
+    <div class="glass-bg-sphere sphere-1"></div>
+    <div class="glass-bg-sphere sphere-2"></div>
+    <div class="glass-bg-sphere sphere-3"></div>
+    <header>
+        <div class="container">
+            <div class="menu">
+                <a class="logo" href="./index.html"><img src="./img/04_p_icon.svg" alt="Попутка"></a>
+                <nav class="nav-menu" aria-label="Основная навигация">
+                    <a href="./index.html">Главная</a>
+                    <a href="./search.html">Найти поездку</a>
+                    <a data-auth-link href="./auth.html?next=account.html">Личный кабинет</a>
+                    <a class="btn-primary btn-header" href="./create-trip.html">Предложить поездку</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main class="interior-main">
+        <div class="container">
+            <div class="global-error" id="page-error" role="alert"></div>
+            <div class="page-heading"><div><div class="eyebrow">ЛИЧНЫЙ КАБИНЕТ</div><h1 class="section-title">Мои поездки</h1><p class="muted">Созданные маршруты и ваши бронирования в одном месте</p></div><a href="./create-trip.html" class="btn-primary action-link">+ Предложить поездку</a></div>
+<div class="profile-strip glass-element"><div class="profile-avatar" id="profile-avatar"><span id="avatar-letter">П</span><img id="profile-avatar-image" alt="Фотография профиля" hidden></div><div class="profile-main"><strong id="profile-name">Загрузка...</strong><span class="muted" id="profile-email"></span><div class="profile-photo-controls"><button type="button" class="photo-upload-button" id="change-avatar">Изменить фото</button><input type="file" id="avatar-file" accept="image/jpeg,image/png,image/webp" aria-label="Загрузить фотографию профиля" hidden><button type="button" class="photo-remove-button" id="remove-avatar" hidden>Удалить фото</button></div><small class="muted photo-upload-hint">JPG, PNG или WebP, до 2 МБ</small></div><button id="logout-button" type="button" class="btn-secondary small-button">Выйти</button></div>
+<p id="account-error" role="alert" class="form-submit-error"></p>
+<section class="account-section"><div class="section-line"><h2>Я водитель</h2><span>Поездки, которые вы опубликовали</span></div><div class="account-grid" id="my-created"></div></section>
+<section class="account-section"><div class="section-line"><h2>Я пассажир</h2><span>Поездки, в которых у вас забронированы места</span></div><div class="account-grid" id="my-booked"></div></section>
+        </div>
+    </main>
+    <footer class="footer glass-element"><div class="container footer-inner"><span>Попутка © 2026</span><div class="footer-links"><a href="./index.html">Главная</a><a href="./search.html">Найти поездку</a></div></div></footer>
+</body>
+</html>

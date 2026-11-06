@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/pages.css?v=5">
     <link rel="stylesheet" href="./css/search.css">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,12 +14,14 @@
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
 
-    <script src="./js/app.js" defer></script>
+    <script src="./js/config.js?v=5" defer></script>
+    <script src="./js/app.js?v=5" defer></script>
 
-    <title>Поиск поездок — Попутно</title>
+    <title>Поиск поездок — Попутка</title>
 </head>
 
 <body>
+    <div class="global-error" id="page-error" role="alert"></div>
     <div class="glass-bg-sphere sphere-1"></div>
     <div class="glass-bg-sphere sphere-2"></div>
     <div class="glass-bg-sphere sphere-3"></div>
@@ -33,14 +36,8 @@
                 <nav class="nav-menu">
                     <!-- <a href="index.html#steps">Как это работает</a> -->
                     <!-- <a href="index.html">Главная</a> -->
-                     <a href="">Войти</a>
-                    <button
-                        type="button"
-                        class="btn-primary btn-header"
-                        id="open-ride-modal"
-                    >
-                        Предложить поездку
-                    </button>
+                     <a data-auth-link href="./auth.html?next=account.html">Личный кабинет</a>
+                    <a class="btn-primary btn-header" href="./create-trip.html">Предложить поездку</a>
                 </nav>
             </div>
         </div>
@@ -258,91 +255,79 @@
                 <div class="ride-form-grid">
 
                     <div class="form-field">
-                        <label for="ride-from">Откуда</label>
+                        <label for="from_city">Откуда</label>
                         <input
                             type="text"
-                            id="ride-from"
+                            id="from_city" name="from_city"
                             minlength="2"
                             maxlength="60"
                             required
                             placeholder="Город отправления"
                         >
-                        <small class="field-error" data-error-for="ride-from"></small>
+                        <small class="field-error" data-error-for="from_city"></small>
                     </div>
 
                     <div class="form-field">
-                        <label for="ride-to">Куда</label>
+                        <label for="to_city">Куда</label>
                         <input
                             type="text"
-                            id="ride-to"
+                            id="to_city" name="to_city"
                             minlength="2"
                             maxlength="60"
                             required
                             placeholder="Город прибытия"
                         >
-                        <small class="field-error" data-error-for="ride-to"></small>
+                        <small class="field-error" data-error-for="to_city"></small>
                     </div>
 
                     <div class="form-field">
-                        <label for="ride-date">Дата отправления</label>
+                        <label for="departure_date">Дата отправления</label>
                         <input
                             type="date"
-                            id="ride-date"
+                            id="departure_date" name="departure_date"
                             required
                         >
-                        <small class="field-error" data-error-for="ride-date"></small>
+                        <small class="field-error" data-error-for="departure_date"></small>
                     </div>
 
                     <div class="form-field">
-                        <label for="ride-time">Время отправления</label>
+                        <label for="departure_time">Время отправления</label>
                         <input
                             type="time"
-                            id="ride-time"
+                            id="departure_time" name="departure_time"
                             required
                         >
-                        <small class="field-error" data-error-for="ride-time"></small>
+                        <small class="field-error" data-error-for="departure_time"></small>
                     </div>
 
                     <div class="form-field">
-                        <label for="ride-price">Цена за место, ₽</label>
+                        <label for="price">Цена за место, ₽</label>
                         <input
                             type="number"
-                            id="ride-price"
+                            id="price" name="price"
                             min="0"
                             max="1000000"
                             step="1"
                             required
                             placeholder="650"
                         >
-                        <small class="field-error" data-error-for="ride-price"></small>
+                        <small class="field-error" data-error-for="price"></small>
                     </div>
 
                     <div class="form-field">
-                        <label for="ride-seats">Свободные места</label>
+                        <label for="seats_total">Свободные места</label>
                         <input
                             type="number"
-                            id="ride-seats"
+                            id="seats_total" name="seats_total"
                             min="1"
                             max="8"
                             step="1"
                             required
                             value="3"
                         >
-                        <small class="field-error" data-error-for="ride-seats"></small>
+                        <small class="field-error" data-error-for="seats_total"></small>
                     </div>
-
-                    <div class="form-field form-field-full">
-                        <label for="ride-driver">Имя водителя</label>
-                        <input
-                            type="text"
-                            id="ride-driver"
-                            minlength="2"
-                            maxlength="60"
-                            required
-                            placeholder="Ваше имя"
-                        >
-                        <small class="field-error" data-error-for="ride-driver"></small>
-                    </div>
+                    <p class="form-field-full muted">Имя водителя берётся из вашего аккаунта.</p>
                 </div>
 
                 <p
@@ -370,7 +355,7 @@
 
     <footer class="footer glass-element">
         <div class="container footer-inner">
-            <div>Попутно © 2026. Демонстрационный сайт.</div>
+            <div>Попутка © 2026. Учебный проект.</div>
 
             <div class="footer-links">
                 <a href="index.html#steps">Как это работает</a>

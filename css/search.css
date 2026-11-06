@@ -238,7 +238,7 @@
 
 .driver-info-block{
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
   
 }
 .driver-avatar {
@@ -250,13 +250,14 @@
 }
 
 .driver-name {
+    text-align: center;
     font-size: 14px;
     font-weight: 600;
     overflow-wrap: anywhere;
 }
 
 .driver-rating {
-    margin-left: 6px;
+    text-align: center;
     font-size: 14px;
     color: #b7791f;
 }

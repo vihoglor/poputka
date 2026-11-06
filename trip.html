@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информация о поездке — Попутка</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/pages.css?v=5">
+    <script src="./js/config.js?v=5" defer></script>
+    <script src="./js/app.js?v=5" defer></script>
+</head>
+<body>
+    <div class="glass-bg-sphere sphere-1"></div>
+    <div class="glass-bg-sphere sphere-2"></div>
+    <div class="glass-bg-sphere sphere-3"></div>
+    <header>
+        <div class="container">
+            <div class="menu">
+                <a class="logo" href="./index.html"><img src="./img/04_p_icon.svg" alt="Попутка"></a>
+                <nav class="nav-menu" aria-label="Основная навигация">
+                    <a href="./index.html">Главная</a>
+                    <a href="./search.html">Найти поездку</a>
+                    <a data-auth-link href="./auth.html?next=account.html">Личный кабинет</a>
+                    <a class="btn-primary btn-header" href="./create-trip.html">Предложить поездку</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <main class="interior-main">
+        <div class="container">
+            <div class="global-error" id="page-error" role="alert"></div>
+            <div class="page-heading"><div class="eyebrow">ПОДРОБНОСТИ МАРШРУТА</div><a class="subtle-link" href="./search.html">← К поиску поездок</a></div><div id="trip-detail" class="detail-wrapper"><div class="empty-state glass-element">Загрузка информации о поездке...</div></div>
+        </div>
+    </main>
+    <footer class="footer glass-element"><div class="container footer-inner"><span>Попутка © 2026</span><div class="footer-links"><a href="./index.html">Главная</a><a href="./search.html">Найти поездку</a></div></div></footer>
+</body>
+</html>
