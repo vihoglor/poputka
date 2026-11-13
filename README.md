@@ -157,3 +157,9 @@ docker compose up -d --build
 ```bash
 docker compose --profile tools run --rm loadgen
 ```
+графики в простое
+<img width="1513" height="836" alt="Снимок экрана 2026-11-13 195149" src="https://github.com/user-attachments/assets/840aa4c9-12bf-44ca-a5c5-8e6bc4a1c539" />
+
+графики под нагрузкой
+<img width="1527" height="857" alt="Снимок экрана 2026-11-13 194639" src="https://github.com/user-attachments/assets/64b7f8c3-65ee-4a4e-baed-ba1b577b2c38" />
+
