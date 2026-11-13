@@ -1,0 +1,94 @@
+services:
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: poputka-webapp:local
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_URL: sqlite:////app/backend/data/poputka.db
+      SEED_DEMO_DATA: "true"
+      COOKIE_SECURE: "false"
+      COOKIE_SAMESITE: lax
+      CORS_ORIGINS: ""
+    volumes:
+      - ./backend/data:/app/backend/data
+    restart: unless-stopped
+    healthcheck:
+      test:
+        - CMD
+        - python
+        - -c
+        - "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=3)"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 20s
+
+  cadvisor:
+    image: ghcr.io/google/cadvisor:v0.60.6
+    ports:
+      - "8080:8080"
+    privileged: true
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:rw
+      - /sys:/sys:ro
+      - /var/lib/docker:/var/lib/docker:ro
+      - /dev/disk:/dev/disk:ro
+    restart: unless-stopped
+
+  prometheus:
+    image: prom/prometheus:v3.16.0
+    ports:
+      - "9090:9090"
+    command:
+      - --config.file=/etc/prometheus/prometheus.yml
+      - --storage.tsdb.path=/prometheus
+      - --storage.tsdb.retention.time=15d
+      - --web.enable-lifecycle
+    volumes:
+      - ./monitoring/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus_data:/prometheus
+    depends_on:
+      cadvisor:
+        condition: service_started
+    restart: unless-stopped
+
+  grafana:
+    image: grafana/grafana:13.3.0
+    ports:
+      - "3000:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-admin}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./monitoring/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./monitoring/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    depends_on:
+      prometheus:
+        condition: service_started
+    restart: unless-stopped
+
+  loadgen:
+    image: python:3.12-slim
+    profiles:
+      - tools
+    working_dir: /work
+    volumes:
+      - ./monitoring/loadgen.py:/work/loadgen.py:ro
+    environment:
+      TARGET_URL: http://webapp:8000/api/trips
+      DURATION_SECONDS: ${LOADGEN_DURATION_SECONDS:-60}
+      CONCURRENCY: ${LOADGEN_CONCURRENCY:-10}
+    command: ["python", "/work/loadgen.py"]
+    depends_on:
+      webapp:
+        condition: service_healthy
+
+volumes:
+  prometheus_data:
+  grafana_data:

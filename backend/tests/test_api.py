@@ -23,6 +23,7 @@ def sample_trip():
 
 def test_auth_trips_and_bookings():
     with TestClient(app) as owner, TestClient(app) as traveler, TestClient(app) as stranger:
+        assert owner.get('/health').json() == {'status': 'ok'}
         assert owner.get('/api/trips').status_code == 200
         assert traveler.get('/api/trips').json()
         assert owner.post('/api/trips', json=sample_trip()).status_code == 401

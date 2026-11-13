@@ -51,11 +51,18 @@ def seed_data():
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     Base.metadata.create_all(engine)
+    if os.getenv('SEED_DEMO_DATA', 'true').lower() in {'1', 'true', 'yes', 'on'}:
+        seed_data()
 
     yield
 
 
 app = FastAPI(title='Попутка API', description='REST API поездок, пользователей и бронирований', version='3.0.0', lifespan=lifespan)
+
+
+@app.get('/health', include_in_schema=False)
+def health():
+    return {'status': 'ok'}
 allowed_origins = [origin.strip().rstrip('/') for origin in os.getenv('CORS_ORIGINS', '').split(',') if origin.strip()]
 if allowed_origins:
     app.add_middleware(CORSMiddleware, allow_origins=allowed_origins, allow_credentials=True, allow_methods=['GET', 'POST', 'PATCH', 'DELETE', 'OPTIONS'], allow_headers=['Content-Type'])

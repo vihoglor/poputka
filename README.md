@@ -134,3 +134,26 @@
 * **Запуск и демонстрационные данные.** Приложение запускается командой `uvicorn app.main:app --reload` из папки `backend`. Начальное заполнение базы тестовыми маршрутами можно отключить переменной `SEED_DEMO_DATA=false`. Полноценная работа с БД требует запущенного FastAPI; GitHub Pages самостоятельно выполняет только статический frontend.
 
 **Итог:** сайт из клиентского приложения лабораторной работы №2 преобразован в веб-приложение с backend, базой данных, пользовательскими аккаунтами и сохранением маршрутов и бронирований.
+
+# Лабораторная работа 4: мониторинг Docker-контейнеров
+
+Для запуска Poputka вместе с cAdvisor, Prometheus и Grafana см. подробную инструкцию в [MONITORING.md](MONITORING.md).
+
+Краткий запуск из корневой папки проекта:
+
+```bash
+docker compose up -d --build
+```
+
+Веб-интерфейсы:
+
+- Poputka: http://localhost:8000
+- cAdvisor: http://localhost:8080
+- Prometheus: http://localhost:9090
+- Grafana: http://localhost:3000
+
+Для генерации тестовой HTTP-нагрузки:
+
+```bash
+docker compose --profile tools run --rm loadgen
+```
